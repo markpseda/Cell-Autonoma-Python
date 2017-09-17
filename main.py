@@ -2,7 +2,7 @@
 import pygame
 import random
 import copy
-import class_decs
+from class_decs import *
 
 # Initialize the game engine
 pygame.init()
