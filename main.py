@@ -26,7 +26,8 @@ screen = pygame.display.set_mode(size)
 def main():
     global theWorld
     done = False
-    theWorld.insertRandinWorld(theWorld.height*64)
+    theWorld.insertRandinWorld(theWorld.height*8)
+    theWorld.copyWorld()
     while not done:
         clock.tick(100)
         for event in pygame.event.get(): # User did something
@@ -35,9 +36,9 @@ def main():
         screen.fill(WHITE)
         currentCount = theWorld.printWorld(screen,pygame) #resets the count
         pygame.display.flip()
-        theWorld.copyWorld()
         if currentCount <= 5:
             theWorld.insertRandinWorld(theWorld.height)
+        theWorld.copyWorld()
 # Be IDLE friendly
 main()
 pygame.quit()
