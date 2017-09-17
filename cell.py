@@ -9,9 +9,18 @@ class Cell:
         self.alive = liv
 
     def updateColor(self, r,g,b):
-        self.red = r
-        self.green = g
-        self.blue = b
+        if r>g and r>b:
+            self.red = r
+            self.green = g
+            self.blue = b
+        elif g>b:
+            self.red = r
+            self.green = g
+            self.blue = b
+        else:
+            self.red = r
+            self.green = g
+            self.blue = b
 
     def copyCell(self, x):
         self.alive = x.alive

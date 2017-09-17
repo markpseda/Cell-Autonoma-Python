@@ -5,7 +5,6 @@ from cell import *
 from music import *
 from world import *
 
-
 # Initialize the game engine
 pygame.init()
 
@@ -20,10 +19,12 @@ RED =   (255,   0,   0)
 
 pygame.display.set_caption("Cellular Autonoma")
 clock = pygame.time.Clock()
-theWorld = World(80, 160)
+multiplier = 15
+theWorld = World(800/multiplier, 1600/multiplier)
+
 
 # Set the height and width of the screen
-size = [10*theWorld.height, 10*theWorld.width]
+size = [multiplier*theWorld.height, multiplier*theWorld.width]
 screen = pygame.display.set_mode(size)
 musicPath = "electronic.wav"
 
@@ -44,7 +45,7 @@ def main():
             if event.type == pygame.QUIT: # If user clicked close
                 done=True # Flag that we are done so we exit this loop
         screen.fill(WHITE)
-        currentCount = theWorld.printWorld(screen,pygame) #resets the count
+        currentCount = theWorld.printWorld(screen,pygame, multiplier) #resets the count
         pygame.display.flip()
 
         if not mp.is_Playing():

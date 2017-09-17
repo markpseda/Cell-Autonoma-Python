@@ -2,8 +2,6 @@ import numpy
 import random
 from cell import *
 
-
-
 class World:
     def __init__(self, w, h):
         self.height = h
@@ -45,12 +43,12 @@ class World:
             for j in range(0, self.width):
                 self.currWorld[i][j].copyCell(self.nextWorld[i][j])
 
-    def printWorld(self,s,p):
+    def printWorld(self,s,p,m):
         currentCount = 0
         for i in range (0, self.height):
             for k in range (0, self.width):
                 self.setNextWorld(i,k)
                 if self.currWorld[i][k].alive == True:
                     currentCount += 1
-                    p.draw.rect(s, (self.currWorld[i][k].red, self.currWorld[i][k].green, self.currWorld[i][k].blue), [i*10, k*10, 10, 10])
+                    p.draw.rect(s, (self.currWorld[i][k].red, self.currWorld[i][k].green, self.currWorld[i][k].blue), [i*m, k*m, m, m])
         return currentCount
