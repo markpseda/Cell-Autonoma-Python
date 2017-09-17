@@ -29,19 +29,15 @@ def main():
     theWorld.insertRandinWorld(theWorld.height*16)
     while not done:
         clock.tick(100)
+        print("h")
         for event in pygame.event.get(): # User did something
             if event.type == pygame.QUIT: # If user clicked close
                 done=True # Flag that we are done so we exit this loop
         screen.fill(WHITE)
-        currentCount = 0 #resets the count
-        for i in range (0, theWorld.height):
-            for k in range (0, theWorld.width):
-                theWorld.setNextWorld(i,k)
-                if theWorld.currWorld[i][k] == 1:
-                    currentCount += 1
-                    pygame.draw.rect(screen, GREEN, [i*10, k*10, 10, 10])
+        currentCount = theWorld.printWorld(screen,pygame) #resets the count
         pygame.display.flip()
-        theWorld.currWorld = numpy.copy(theWorld.nextWorld)
+        print("LOL")
+        theWorld.copyWorld()
         if currentCount <= 5:
             theWorld.insertRandinWorld(theWorld.height)
 # Be IDLE friendly
