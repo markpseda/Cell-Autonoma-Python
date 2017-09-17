@@ -5,18 +5,15 @@ from cell import *
 from music import *
 from world import *
 
-# Initialize the game engine
-pygame.init()
-
-# Define the colors we will use in RGB format
+# Define the colors we will use in RGB format - only BLACK is used. 
 BLACK = (  0,   0,   0)
 WHITE = (255, 255, 255)
 BLUE =  (  0,   0, 255)
 GREEN = (  0, 255,   0)
 RED =   (255,   0,   0)
 
- #########################where the party gets started###################################
-
+######################where the party gets started##########################
+pygame.init() #initializes the game engine
 pygame.display.set_caption("Cellular Autonoma")
 clock = pygame.time.Clock()
 multiplier = 15
@@ -26,18 +23,21 @@ theWorld = World(800/multiplier, 1600/multiplier)
 # Set the height and width of the screen
 size = [multiplier*theWorld.height, multiplier*theWorld.width]
 screen = pygame.display.set_mode(size)
-musicPath = "electronic.wav"
-
+##################INSERT SONG######################
+##musicPath = "song.wav" 
 
 def main():
     global theWorld
     done = False
     theWorld.insertRandinWorld(theWorld.height*15)
     theWorld.copyWorld()
-    mp = MusicPlayer()
-    mp.initialize_music()
-    mp.load_song(musicPath)
-    mp.play_song()
+    
+    #######If you added a song, uncomment these.
+    ##mp = MusicPlayer()
+    ##mp.initialize_music()
+    ##mp.load_song(musicPath)
+    ##mp.play_song()
+    #######
 
     while not done:
         clock.tick(1000)
@@ -45,13 +45,13 @@ def main():
             if event.type == pygame.QUIT: # If user clicked close
                 done=True # Flag that we are done so we exit this loop
         screen.fill(WHITE)
-        currentCount = theWorld.printWorld(screen,pygame, multiplier) #resets the count
+        currentCount = theWorld.printWorld(screen,pygame, multiplier)
         pygame.display.flip()
 
-        if not mp.is_Playing():
-            mp.load_song(musicPath)
-            mp.play_song()
-            theWorld.insertRandinWorld(theWorld.height*10)
+        ##if not mp.is_Playing():
+            ##mp.load_song(musicPath)
+            ##mp.play_song()
+            ##theWorld.insertRandinWorld(theWorld.height*10)
 
         if currentCount <= 5:
             theWorld.insertRandinWorld(theWorld.height*5)
