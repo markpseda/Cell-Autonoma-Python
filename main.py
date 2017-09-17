@@ -26,17 +26,15 @@ screen = pygame.display.set_mode(size)
 def main():
     global theWorld
     done = False
-    theWorld.insertRandinWorld(theWorld.height*16)
+    theWorld.insertRandinWorld(theWorld.height*64)
     while not done:
         clock.tick(100)
-        print("h")
         for event in pygame.event.get(): # User did something
             if event.type == pygame.QUIT: # If user clicked close
                 done=True # Flag that we are done so we exit this loop
         screen.fill(WHITE)
         currentCount = theWorld.printWorld(screen,pygame) #resets the count
         pygame.display.flip()
-        print("LOL")
         theWorld.copyWorld()
         if currentCount <= 5:
             theWorld.insertRandinWorld(theWorld.height)

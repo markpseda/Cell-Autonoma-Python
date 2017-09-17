@@ -18,14 +18,16 @@ class Cell:
 
 class World:
     def __init__(self, w, h):
-        self.height = h;
-        self.width = w;
-        self.currWorld = []
-        self.nextWorld = []
+        self.height = h
+        self.width = w
+        self.currWorld = [[]]
+        self.nextWorld = [[]]
         for i in range(0,h):
+            self.currWorld.append([])
+            self.nextWorld.append([])
             for j in range(0,w):
-                self.currWorld[i][j].append(Cell(0,0,0,False))
-                self.nextWorld[i][j].append(Cell(0,0,0,False))
+                self.currWorld[i].append(Cell(0,0,0,False))
+                self.nextWorld[i].append(Cell(0,0,0,False))
 
     #this function checks the coordinate given and sets the NextWorld matrix for that spot
     def setNextWorld(self, x ,y):
@@ -59,12 +61,10 @@ class World:
 
     def printWorld(self,s,p):
         currentCount = 0
-        print("entered print func")
         for i in range (0, self.height):
             for k in range (0, self.width):
                 self.setNextWorld(i,k)
                 if self.currWorld[i][k].alive == True:
                     currentCount += 1
-                    print("should print")
                     p.draw.rect(s, (self.currWorld[i][k].red, self.currWorld[i][k].green, self.currWorld[i][k].blue), [i*10, k*10, 10, 10])
         return currentCount
