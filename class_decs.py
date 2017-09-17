@@ -1,5 +1,5 @@
-
 import numpy
+import random
 
 class Cell:
     red = 0
@@ -8,14 +8,14 @@ class Cell:
     alive = False
 
 class World:
-    def __init__(self, h, w):
+    def __init__(self, w, h):
         self.height = h;
         self.width = w;
-        self.currWorld = numpy.zeros((height,width))
-        self.nextWorld = numpy.zeros((height,width))
+        self.currWorld = numpy.zeros((h,w))
+        self.nextWorld = numpy.zeros((h,w))
 
     #this function checks the coordinate given and sets the NextWorld matrix for that spot
-    def setNextWorld(self, x,y):
+    def setNextWorld(self, x ,y):
         neighbors = 0
         for i in range(-1,2):
             for k in range(-1,2):
@@ -28,6 +28,6 @@ class World:
         else:
             self.nextWorld[x][y] = 0
 
-    def insertRandinWorld(x):
+    def insertRandinWorld(self, x):
         for i in range(0, x):
-            self.currWorld[random.randrange(0,height)][random.randrange(0,width)] = 1
+            self.currWorld[random.randrange(0,self.height)][random.randrange(0,self.width)] = 1

@@ -1,6 +1,5 @@
 # Import a library of functions called 'pygame'
 import pygame
-import random
 import copy
 from class_decs import *
 
@@ -25,9 +24,9 @@ size = [10*theWorld.height, 10*theWorld.width]
 screen = pygame.display.set_mode(size)
 
 def main():
-    done = False
-    insertRandinWorld(height*16)
     global theWorld
+    done = False
+    theWorld.insertRandinWorld(theWorld.height*16)
     while not done:
         clock.tick(100)
         for event in pygame.event.get(): # User did something
@@ -42,7 +41,7 @@ def main():
                     currentCount += 1
                     pygame.draw.rect(screen, GREEN, [i*10, k*10, 10, 10])
         pygame.display.flip()
-        theWorld.currWorld = numpy.copy(NextWorld)
+        theWorld.currWorld = numpy.copy(theWorld.nextWorld)
         if currentCount <= 5:
             theWorld.insertRandinWorld(theWorld.height)
 # Be IDLE friendly
