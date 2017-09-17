@@ -1,0 +1,9 @@
+To add music to this program, you can add a .wav file and uncomment several lines. 
+
+First, put the .wav file in the same folder as this program. Name it something like:
+song.wav
+
+Then, where there is a comment that says to add the song file, write it like this:
+"song.wav"
+
+Finish uncommenting the lines, and it can play music!
