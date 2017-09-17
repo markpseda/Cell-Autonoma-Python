@@ -2,6 +2,7 @@
 import pygame
 import copy
 from class_decs import *
+from music import *
 
 # Initialize the game engine
 pygame.init()
@@ -28,6 +29,10 @@ def main():
     done = False
     theWorld.insertRandinWorld(theWorld.height*15)
     theWorld.copyWorld()
+    MusicPlayer.initialize_music()
+    MusicPlayer.load_song("cello.wav")
+    MusicPlayer.play_song()
+
     while not done:
         clock.tick(100)
         for event in pygame.event.get(): # User did something
@@ -36,8 +41,13 @@ def main():
         screen.fill(WHITE)
         currentCount = theWorld.printWorld(screen,pygame) #resets the count
         pygame.display.flip()
+
+        if not MusicPlayer.is_Playing:
+            MusicPlayer.play_song()
+            theWorld.insertRandinWorld(theWorld.height*10)
+
         if currentCount <= 5:
-            theWorld.insertRandinWorld(theWorld.height)
+            theWorld.insertRandinWorld(theWorld.height*5)
         theWorld.copyWorld()
 # Be IDLE friendly
 main()

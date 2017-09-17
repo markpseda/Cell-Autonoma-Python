@@ -11,3 +11,6 @@ class MusicPlayer:
     def play_song():
         pygame.mixer.music.play()
 
+    def is_Playing():
+        return pygame.mixer.music.get_busy()
+
