@@ -23,6 +23,8 @@ theWorld = World(80, 160)
 # Set the height and width of the screen
 size = [10*theWorld.height, 10*theWorld.width]
 screen = pygame.display.set_mode(size)
+musicPath = "electronic.wav"
+
 
 def main():
     global theWorld
@@ -30,11 +32,11 @@ def main():
     theWorld.insertRandinWorld(theWorld.height*15)
     theWorld.copyWorld()
     MusicPlayer.initialize_music()
-    MusicPlayer.load_song("cello.wav")
+    MusicPlayer.load_song(musicPath)
     MusicPlayer.play_song()
 
     while not done:
-        clock.tick(100)
+        clock.tick(1000)
         for event in pygame.event.get(): # User did something
             if event.type == pygame.QUIT: # If user clicked close
                 done=True # Flag that we are done so we exit this loop
@@ -42,7 +44,8 @@ def main():
         currentCount = theWorld.printWorld(screen,pygame) #resets the count
         pygame.display.flip()
 
-        if not MusicPlayer.is_Playing:
+        if not MusicPlayer.is_Playing():
+            MusicPlayer.load_song(musicPath)
             MusicPlayer.play_song()
             theWorld.insertRandinWorld(theWorld.height*10)
 
