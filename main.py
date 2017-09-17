@@ -31,9 +31,10 @@ def main():
     done = False
     theWorld.insertRandinWorld(theWorld.height*15)
     theWorld.copyWorld()
-    MusicPlayer.initialize_music()
-    MusicPlayer.load_song(musicPath)
-    MusicPlayer.play_song()
+    mp = MusicPlayer()
+    mp.initialize_music()
+    mp.load_song(musicPath)
+    mp.play_song()
 
     while not done:
         clock.tick(1000)
@@ -44,9 +45,9 @@ def main():
         currentCount = theWorld.printWorld(screen,pygame) #resets the count
         pygame.display.flip()
 
-        if not MusicPlayer.is_Playing():
-            MusicPlayer.load_song(musicPath)
-            MusicPlayer.play_song()
+        if not mp.is_Playing():
+            mp.load_song(musicPath)
+            mp.play_song()
             theWorld.insertRandinWorld(theWorld.height*10)
 
         if currentCount <= 5:
