@@ -1,8 +1,10 @@
 # Import a library of functions called 'pygame'
 import pygame
 import copy
-from class_decs import *
+from cell import *
 from music import *
+from world import *
+
 
 # Initialize the game engine
 pygame.init()
