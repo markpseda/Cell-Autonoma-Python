@@ -37,18 +37,16 @@ class World:
 
     #this function checks the coordinate given and sets the NextWorld matrix for that spot
     def setNextWorld(self, x ,y):
-        neighbors = 0
+        neighbors = []
         for i in range(-1,2):
             for k in range(-1,2):
                 if self.currWorld[(x+i) % self.height][(y+k) % self.width].alive == True and not(i == 0 and k == 0):
-                    neighbors += 1
-        if self.currWorld[x][y].alive == True and neighbors == 2:
+                    neighbors.append(self.currWorld[(x+i) % self.height][(y+k) % self.width])
+        if self.currWorld[x][y].alive == True and len(neighbors) == 2:
             self.nextWorld[x][y].updateHealth(True)
-            self.nextWorld[x][y].updateColor(55,0,0)
-
-        elif neighbors == 3:
+        elif len(neighbors) == 3:
             self.nextWorld[x][y].updateHealth(True)
-            self.nextWorld[x][y].updateColor(0,55,0)
+            self.nextWorld[x][y].updateColor((neighbors[0].red+neighbors[1].red+neighbors[2].red)/3,(neighbors[0].green+neighbors[1].green+neighbors[2].green)/3,(neighbors[0].blue+neighbors[1].blue+neighbors[2].blue)/3)
         else:
             self.nextWorld[x][y].updateHealth(False)
             self.nextWorld[x][y].updateColor(0,0,0)

@@ -26,7 +26,7 @@ screen = pygame.display.set_mode(size)
 def main():
     global theWorld
     done = False
-    theWorld.insertRandinWorld(theWorld.height*8)
+    theWorld.insertRandinWorld(theWorld.height*15)
     theWorld.copyWorld()
     while not done:
         clock.tick(100)
