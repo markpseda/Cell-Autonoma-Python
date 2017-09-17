@@ -16,6 +16,12 @@ class Cell:
         self.green = g
         self.blue = b
 
+    def copyCell(self, x):
+        self.alive = x.alive
+        self.red = x.red
+        self.green = x.green
+        self.blue = x.blue
+
 class World:
     def __init__(self, w, h):
         self.height = h
@@ -57,7 +63,7 @@ class World:
     def copyWorld(self):
         for i in range(0, self.height):
             for j in range(0, self.width):
-                self.currWorld[i][j] = self.nextWorld[i][j]
+                self.currWorld[i][j].copyCell(self.nextWorld[i][j])
 
     def printWorld(self,s,p):
         currentCount = 0
